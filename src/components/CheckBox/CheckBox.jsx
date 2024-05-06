@@ -1,13 +1,12 @@
-export default function CheckBox(hasAccepted, onCheck) {
-
+export default function CheckBox(hasAccepted, onChange) {
   return (
     <div>
       <label>
         <input
           type="checkbox"
           name="terms"
-          checked={hasAccepted}
-          onChange={onCheck}
+          checked={!hasAccepted}
+          onChange={onChange}
         /> 
 				I accept terms and conditions
       </label>
