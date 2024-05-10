@@ -1,27 +1,27 @@
-import { useState } from 'react'
-// import LangSwitcher from './components/LangSwitcher/LangSwitcher';
-import './App.css'
-import Form from './components/Form/Form'
-// import RadioButton from './components/RadioButton/RadioButton';
-import CheckBox from './components/CheckBox/CheckBox';
+import { useState } from 'react';
+import './App.css';
+import initialTasks from './Tasks.json';
+import Filter from './components/Collection/Filter/Filter';
+import Form from './components/Collection/Form/Form';
+import TaskList from './components/Collection/TaskList/TaskList';
 function App() {
-  // const [lang, setLang] = useState("uk");
-  const [hasAccepted, setHasAccepted] = useState(false);
-  const handleChange = (evt) => {
-    setHasAccepted(evt.target.checked)
-    // console.log(evt.target.checked)
-  }
+  const [tasks, setTasks] = useState(initialTasks);
+  const addTask = newTasks => {
+    // console.log('onAdd work');
+    //prevTasks це значення стану tasks на момент оновлення
+    setTasks(prevTasks => {
+      return [...prevTasks, newTasks];
+    });
+  };
   return (
     <>
-      <Form />
       <div>
-        {/* <p>Selected language: {lang}</p>
-        <LangSwitcher value={lang} onSelect={setLang} />
-        <RadioButton /> */}
-        <CheckBox hasAccepted={hasAccepted} onChange={handleChange} />
+        <Form onAdd={addTask} />
+        <Filter />
+        <TaskList tasks={tasks} />
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
