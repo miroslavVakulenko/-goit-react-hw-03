@@ -7,6 +7,7 @@ import TaskList from './components/Collection/TaskList/TaskList';
 function App() {
   const [tasks, setTasks] = useState(initialTasks);
   const addTask = newTasks => {
+    console.log(newTasks);
     // console.log('onAdd work');
     //prevTasks це значення стану tasks на момент оновлення
     setTasks(prevTasks => {

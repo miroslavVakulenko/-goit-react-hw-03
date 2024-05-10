@@ -5,11 +5,11 @@ export default function TaskList({ tasks }) {
   return (
     <>
       <ul>
-        {tasks.map(task => {
+        {tasks.map(task => (
           <li className={css.item} key={task.id}>
-            <Task />
-          </li>;
-        })}
+            <Task data={task} />
+          </li>
+        ))}
       </ul>
     </>
   );

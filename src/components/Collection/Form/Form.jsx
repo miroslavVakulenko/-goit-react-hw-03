@@ -1,6 +1,7 @@
 import css from './Form.module.css';
 export default function Form({ onAdd }) {
   const handleSubmit = e => {
+    console.log(e.target.elements.text);
     e.preventDefault();
     onAdd({
       id: Date.now(),

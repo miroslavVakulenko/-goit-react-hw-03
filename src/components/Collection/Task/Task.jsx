@@ -1,10 +1,10 @@
-export default function Task({ task }) {
+import css from './Task.module.css';
+
+export default function Task({ data: { text } }) {
   return (
-    <>
-      <div>
-        <p>{task}</p>
-        <button>Delete</button>
-      </div>
-    </>
+    <div className={css.container}>
+      <p className={css.text}>{text}</p>
+      <button>Delete</button>
+    </div>
   );
 }
