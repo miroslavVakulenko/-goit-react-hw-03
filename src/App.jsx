@@ -6,6 +6,8 @@ import Form from './components/Collection/Form/Form';
 import TaskList from './components/Collection/TaskList/TaskList';
 function App() {
   const [tasks, setTasks] = useState(initialTasks);
+  const [filter, setFilter] = useState('');
+
   const addTask = newTasks => {
     console.log(newTasks);
     // console.log('onAdd work');
@@ -14,12 +16,22 @@ function App() {
       return [...prevTasks, newTasks];
     });
   };
+
+  const deleteTask = taskId => {
+    console.log(taskId);
+    setTasks(prevTasks => {
+      return prevTasks.filter(task => task.id !== taskId);
+    });
+  };
+  const visibleTasks = tasks.filter(task =>
+    task.text.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
+  );
   return (
     <>
       <div>
         <Form onAdd={addTask} />
-        <Filter />
-        <TaskList tasks={tasks} />
+        <Filter value={filter} onFilter={setFilter} />
+        <TaskList tasks={visibleTasks} onDelete={deleteTask} />
       </div>
     </>
   );
