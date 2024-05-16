@@ -4,6 +4,8 @@ import initialTasks from './Tasks.json';
 import Filter from './components/Collection/Filter/Filter';
 import Form from './components/Collection/Form/Form';
 import TaskList from './components/Collection/TaskList/TaskList';
+import UserForm from './components/UserForm/UserForm';
+
 function App() {
   const [tasks, setTasks] = useState(initialTasks);
   const [filter, setFilter] = useState('');
@@ -29,6 +31,7 @@ function App() {
   return (
     <>
       <div>
+        <UserForm />
         <Form onAdd={addTask} />
         <Filter value={filter} onFilter={setFilter} />
         <TaskList tasks={visibleTasks} onDelete={deleteTask} />
