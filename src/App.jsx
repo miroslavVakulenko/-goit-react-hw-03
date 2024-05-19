@@ -28,10 +28,14 @@ function App() {
   const visibleTasks = tasks.filter(task =>
     task.text.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
   );
+
+  const handleAddUser = newUser => {
+    console.log("handleAddUser fom App.jsx", newUser)
+  }
   return (
     <>
       <div>
-        <UserForm />
+        <UserForm onAdd={handleAddUser} />
         <Form onAdd={addTask} />
         <Filter value={filter} onFilter={setFilter} />
         <TaskList tasks={visibleTasks} onDelete={deleteTask} />
