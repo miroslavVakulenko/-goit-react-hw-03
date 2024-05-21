@@ -4,7 +4,7 @@ import initialTasks from './Tasks.json';
 import Filter from './components/Collection/Filter/Filter';
 import Form from './components/Collection/Form/Form';
 import TaskList from './components/Collection/TaskList/TaskList';
-import UserForm from './components/UserForm/UserForm';
+import UserForm from './components/LMS/UserForm/UserForm';
 
 function App() {
   const [tasks, setTasks] = useState(initialTasks);
@@ -30,8 +30,8 @@ function App() {
   );
 
   const handleAddUser = newUser => {
-    console.log("handleAddUser fom App.jsx", newUser)
-  }
+    console.log('handleAddUser fom App.jsx', newUser);
+  };
   return (
     <>
       <div>
