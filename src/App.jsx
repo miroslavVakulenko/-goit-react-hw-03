@@ -1,44 +1,34 @@
 import { useState } from 'react';
 import './App.css';
-import initialTasks from './Tasks.json';
-import Filter from './components/Collection/Filter/Filter';
-import Form from './components/Collection/Form/Form';
-import TaskList from './components/Collection/TaskList/TaskList';
-import UserForm from './components/LMS/UserForm/UserForm';
+import ContactForm from './components/ContactForm';
+import SearchBox from './components/SearchBox';
+import ContactList from './components/ContactList';
+
 
 function App() {
-  const [tasks, setTasks] = useState(initialTasks);
-  const [filter, setFilter] = useState('');
 
-  const addTask = newTasks => {
-    console.log(newTasks);
-    // console.log('onAdd work');
-    //prevTasks це значення стану tasks на момент оновлення
-    setTasks(prevTasks => {
-      return [...prevTasks, newTasks];
-    });
-  };
+  const [contacts, setContacts] useState([
+  {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
+  {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
+  {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
+  {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
+  ])
+  const setContacts = () => {
 
-  const deleteTask = taskId => {
-    console.log(taskId);
-    setTasks(prevTasks => {
-      return prevTasks.filter(task => task.id !== taskId);
-    });
-  };
-  const visibleTasks = tasks.filter(task =>
-    task.text.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
-  );
-
-  const handleAddUser = newUser => {
-    console.log('handleAddUser fom App.jsx', newUser);
-  };
+  }
   return (
     <>
-      <div>
+      {/* <div>
         <UserForm onAdd={handleAddUser} />
         <Form onAdd={addTask} />
         <Filter value={filter} onFilter={setFilter} />
         <TaskList tasks={visibleTasks} onDelete={deleteTask} />
+      </div> */}
+      <div>
+        <h1>Phonebook</h1>
+        <ContactForm />
+        <SearchBox />
+        <ContactList />
       </div>
     </>
   );
