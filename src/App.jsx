@@ -1,34 +1,36 @@
 import { useState } from 'react';
 import './App.css';
-import ContactForm from './components/ContactForm';
-import SearchBox from './components/SearchBox';
-import ContactList from './components/ContactList';
-
+import ContactForm from './components/ContactForm/ContactForm';
+import SearchBox from './components/SearchBox/SearchBox';
+import ContactList from './components/ContactList/ContactList';
+import initialContacts from './contacts.json';
 
 function App() {
+  const [contacts, setContacts] = useState(initialContacts);
+  const addContact = newContact => {
+    setContacts(prevContacts => {
+      return [...prevContacts, newContact];
+    });
+  };
+  const deleteContact = contactId => {
+    setContacts(prevContacts => {
+      console.log('delete contact', contactId);
+      return prevContacts.filter(contact => contact.id == !contactId);
+    });
+  };
+  const visibleContacts = contacts.filter(contact =>
+    contact.text.tolowerCase().includes(filter.tolowerCase())
+  );
+  console.log(visibleContacts);
 
-  const [contacts, setContacts] useState([
-  {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
-  {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-  {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-  {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
-  ])
-  const setContacts = () => {
-
-  }
   return (
     <>
-      {/* <div>
-        <UserForm onAdd={handleAddUser} />
-        <Form onAdd={addTask} />
-        <Filter value={filter} onFilter={setFilter} />
-        <TaskList tasks={visibleTasks} onDelete={deleteTask} />
-      </div> */}
       <div>
         <h1>Phonebook</h1>
-        <ContactForm />
+        <button onClick={visibleContacts}></button>
+        <ContactForm onAdd={addContact} />
         <SearchBox />
-        <ContactList />
+        <ContactList contacts={visibleContacts} onDelete={deleteContact} />
       </div>
     </>
   );
