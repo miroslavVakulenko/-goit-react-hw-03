@@ -1,8 +1,9 @@
 export default function Contact(onDelete, data) {
+  console.log(data);
   return (
     <div>
-      <p></p>
-      <p></p>
+      <p>{data.name}</p>
+      <p>{data.number}</p>
       <button onClick={onDelete}></button>
     </div>
   );

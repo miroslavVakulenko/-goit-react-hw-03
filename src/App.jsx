@@ -7,6 +7,7 @@ import initialContacts from './contacts.json';
 
 function App() {
   const [contacts, setContacts] = useState(initialContacts);
+  // const [filter, setFilter] = useState('');
   const addContact = newContact => {
     setContacts(prevContacts => {
       return [...prevContacts, newContact];
@@ -18,19 +19,21 @@ function App() {
       return prevContacts.filter(contact => contact.id == !contactId);
     });
   };
-  const visibleContacts = contacts.filter(contact =>
-    contact.text.tolowerCase().includes(filter.tolowerCase())
-  );
-  console.log(visibleContacts);
+  console.log(contacts);
+
+  // const visibleContacts = contacts.filter(contact =>
+  //   contact.name.toLowerCase().includes(filter.toLowerCase())
+  // );
+  // console.log(visibleContacts);
 
   return (
     <>
       <div>
         <h1>Phonebook</h1>
-        <button onClick={visibleContacts}></button>
+        {/* <button onClick={visibleContacts}></button> */}
         <ContactForm onAdd={addContact} />
         <SearchBox />
-        <ContactList contacts={visibleContacts} onDelete={deleteContact} />
+        <ContactList contacts={contacts} onDelete={deleteContact} />
       </div>
     </>
   );
