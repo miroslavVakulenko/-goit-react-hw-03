@@ -1,3 +1,4 @@
+//App.jsx
 import { useState } from 'react';
 import './App.css';
 import ContactForm from './components/ContactForm/ContactForm';
@@ -8,6 +9,7 @@ import initialContacts from './contacts.json';
 function App() {
   const [contacts, setContacts] = useState(initialContacts);
   // const [filter, setFilter] = useState('');
+
   const addContact = newContact => {
     setContacts(prevContacts => {
       return [...prevContacts, newContact];
@@ -15,11 +17,11 @@ function App() {
   };
   const deleteContact = contactId => {
     setContacts(prevContacts => {
-      console.log('delete contact', contactId);
-      return prevContacts.filter(contact => contact.id == !contactId);
+      // console.log('delete contact', contactId);
+      return prevContacts.filter(contact => contact.id !== contactId);
     });
   };
-  console.log(contacts);
+  // console.log(contacts);
 
   // const visibleContacts = contacts.filter(contact =>
   //   contact.name.toLowerCase().includes(filter.toLowerCase())
