@@ -1,9 +1,11 @@
+import { nanoid } from 'nanoid';
+
 export default function ContactForm({ onAdd }) {
   const handleSubmit = e => {
     e.preventDefault();
     console.log(e);
     onAdd({
-      id: Date.now(),
+      id: nanoid(),
       name: e.target.elements.name.value,
       number: e.target.elements.number.value,
     });
