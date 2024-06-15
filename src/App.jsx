@@ -7,8 +7,21 @@ import ContactList from './components/ContactList/ContactList';
 import initialContacts from './contacts.json';
 
 function App() {
-  const [contacts, setContacts] = useState(initialContacts);
+  // const [contacts, setContacts] = useState(initialContacts);
   const [filter, setFilter] = useState('');
+  const [contacts, setContacts] = useState(() => {
+    try {
+      const savedContacts = window.localStorage.getItem('saved-contacts');
+      return savedContacts ? JSON.parse(savedContacts) : initialContacts;
+    } catch (error) {
+      console.error('Error parsing saved contacts from localStorage:', error);
+      return initialContacts;
+    }
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem('saved-contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
   const addContact = newContact => {
     setContacts(prevContacts => {
@@ -17,22 +30,18 @@ function App() {
   };
   const deleteContact = contactId => {
     setContacts(prevContacts => {
-      // console.log('delete contact', contactId);
       return prevContacts.filter(contact => contact.id !== contactId);
     });
   };
-  // console.log(contacts);
 
   const visibleContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
-  // console.log(visibleContacts);
 
   return (
     <>
       <div>
         <h1>Phonebook</h1>
-        {/* <button onClick={visibleContacts}></button> */}
         <ContactForm onAdd={addContact} />
         <SearchBox value={filter} onFilter={setFilter} />
         <ContactList contacts={visibleContacts} onDelete={deleteContact} />
